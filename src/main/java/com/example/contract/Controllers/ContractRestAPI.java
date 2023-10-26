@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.List;
 
 @RestController
@@ -15,15 +16,17 @@ public class ContractRestAPI {
     IContractService contractService;
 
 
-
+//this methode can be accessed by user whose role is admin
     @GetMapping("/retrieve-all-contracts")
-
+    @RolesAllowed("admin")
     public List<Contract> getContracts() {
         List <Contract> listContracts = contractService.retrieveAllContracts();
         return listContracts;
     }
 
+    //this methode can be accessed by user whose role is user
     @GetMapping("/retrieve-contract/{contract-id}")
+    @RolesAllowed("user")
     public Contract retrieveContract(@PathVariable("contract-id") Long cId) {
         Contract contract = contractService.retriveContract(cId);
         return contract;
