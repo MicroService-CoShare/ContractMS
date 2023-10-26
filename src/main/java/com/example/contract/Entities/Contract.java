@@ -36,5 +36,8 @@ public class Contract {
     private ContractStatus status;
 
 
+    public Contract(String one_way_contract, String good, String pdf, String s, String not_validated) {
+
+    }
 }
 
